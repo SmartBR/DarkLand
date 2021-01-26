@@ -1,0 +1,64 @@
+extends ../layout/layout
+
+block head
+    title DarkLand - API
+    link(rel="stylesheet" href="/css/documentation/api.css")
+    meta(name="description" content="DarkLand oferece uma API para os desenvolvedores como forma de obter informações sobre suas aplicações. Com o uso adequado você poderá usar nossa API.")
+
+block body
+    .text-center.text-white.mt-5
+        h1 Documentação da API
+        h5.d-inline-block(style="width: 50rem;") DarkLand oferece uma API para os desenvolvedores como forma de obter informações sobre suas aplicações. Com o uso adequado você poderá usar nossa API.
+
+        hr
+
+        div#methods
+            p.title Pegar informações de um bot (Rest API)
+            p.darkland-code.container
+                span.text-warning GET &nbsp;
+                span https://darkland.site/api/bot/{bot.id}
+            p.information Este método retorna (objeto de exemplo): <br>
+            code
+                span.text-muted { <br>
+                span.text-muted &nbsp;&nbsp; username: <span class="text-white">"DarkLand"</span> <br>
+                span.text-muted &nbsp;&nbsp; discriminator: <span class="text-white">"#6676"</span>, <br>
+                span.text-muted &nbsp;&nbsp; owners: <span class="text-white">["796011282632409128"]</span>, <br>
+                span.text-muted &nbsp;&nbsp; view: { <br>
+                span.text-muted &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; prefix: <span class="text-white">"++"</span>, <br>
+                span.text-muted &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; customLink: <span class="text-white">"darkland"</span>, <br>
+                span.text-muted &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; library: <span class="text-white">"Discord.js"</span>, <br>
+                span.text-muted &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; supportServer: <span class="text-white">"http://darkland.site/discord"</span>, <br>
+                span.text-muted &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; website: <span class="text-white">"http://darkland.site"</span>, <br>
+                span.text-muted &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; shortDescription: <span class="text-white">"Bot exclusivo da DarkLand"</span>, <br>
+                span.text-muted &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; description: <span class="text-white">"# DarkLand - Bot exclusivo"</span>, <br>
+                span.text-muted &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tags: <span class="text-white">["Anime", "Dashboard", "Diversão"]</span>, <br>
+                span.text-muted &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; votes: <span class="text-white">["796011282632409128"]</span> <br>
+                span.text-muted &nbsp;&nbsp; } <br>
+                span.text-muted }
+
+            hr
+
+            h2.title Verificador de votos em tempo real
+            p.information Primeiro passo é instalar nossa livraria:
+            p.darkland-code.container
+                span.text-warning npm &nbsp;
+                span install &nbsp;
+                span.text-warning darkland@1.0.0
+            p.information Agora você precisa adicionar nosso método de validação:
+            code
+                span const Discord = require("discord.js") <br>
+                span const client = new Discord.Client() <br>
+                span const { darkLand, validate } = require("darkland.js") <br>
+                br
+                span client.on("ready", () => { <br>
+                span &nbsp;&nbsp;   validate(client); <br>
+                span }) <br>
+                br
+                span client.login("YOUR_TOKEN_HERE")
+            p.information E por último, chamar o evento de votação:
+            code
+                span darkLand.on("vote", (user) => { <br>
+                span &nbsp;&nbsp;console.log(`${user.username} voted!`) <br>
+                span })
+
+

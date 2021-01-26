@@ -1,0 +1,54 @@
+extends ../layout/layout
+
+block head
+    title #{userSession.username} - Adicionar Bot
+    script(src="/jquery/botconfig.js")
+
+block body
+    .text-center.text-white.mt-5
+        h1 Adicione seu bot
+        p Preencha todas os campos abaixo para adicionar seu bot, seja o mais específico possível.
+
+        form#noPostForm.container.mt-5.text-lg-left
+            .row
+                .form-outline.mb-3.col
+                    span ID do bot
+                    input.form-control(name="id" type="text" placeholder="012345678910123456" style="max-width: 29rem;" required)
+                .form-outline.mb-3.col
+                    span Prefix
+                    input.form-control(name="prefix" type="text" placeholder="++" style="max-width: 29rem;" required)
+            .row
+                .form-outline.mb-3.col
+                    span Link personalizado (apenas para vips)
+                    div(style="display: flex; max-width: 29rem;")
+                        input.form-control.disabled(type="text" value=`darkland.site/bot/` style="width: 9.7rem;")
+                        input.form-control(name="customLink" type="text" placeholder="darkland" disabled=!vip maxlength="15")
+                .form-outline.mb-3.col
+                    span Livraria
+                    select.form-control(name="library" style="max-width: 29rem;")
+                        each library in libraries
+                            option #{library}
+            .row
+                .form-outline.mb-3.col
+                    span Servidor de suporte
+                    input.form-control(name="supportServer" type="text" placeholder="discord.gg/darkland" style="max-width: 29rem;")
+                .form-outline.mb-3.col
+                    span Site/Painel
+                    input.form-control(name="website" type="text" placeholder=`${domain}` style="max-width: 29rem;")
+            .row
+                .form-outline.mb-3.col
+                    span Descrição (curta)
+                    textarea.form-control(name="shortDescription" placeholder="Bot com múltiplas funcionalidades." maxlength="30" style="max-width: 29rem;" rows="4" required)
+                .form-outline.mb-3.col
+                    span Descrição (detalhada)
+                    textarea.form-control(name="description" placeholder="Um bot que consiste em um mega sistema de moderação e interação com os membros do seu servidor." maxlength="7000" style="max-width: 29rem;" rows="4" required)
+                    small Markdown permitido.
+            .row
+                .form-outline.mb-3.col
+                    span Tags (limite 3)
+                    select.form-control(name="tags" style="max-width: 29rem;" required multiple)
+                        each tag in tags
+                            option #{tag}
+                    small Pressione CTRL para selecionar mais de um
+
+            button#sendButton.btn.btn-success(aria-label="Bot enviado para avaliação") Enviar

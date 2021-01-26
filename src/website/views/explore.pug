@@ -1,0 +1,17 @@
+extends ./layout/layout
+
+block head
+    title DarkLand - Exploração
+    meta(name="description" content="Procurando por algo novo ? Você está na página certa! Aqui você irá encontrar todo tipo de bot.")
+
+block body
+    .text-center.text-white.mt-5
+        h1 Exploração de Bots
+        h5 Procurando por algo novo ? Você está na página certa! Aqui você irá encontrar todo tipo de bot.
+
+        for bots, tag in tags
+            h3.mt-5 #{tag}
+            .justify-content-center.align-items-center
+                .card-group.container
+                    for bot in bots
+                        include ./cards/index

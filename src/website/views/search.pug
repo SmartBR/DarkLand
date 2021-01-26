@@ -1,0 +1,16 @@
+extends ./layout/layout
+
+block head
+    title DarkLand - #{search}
+
+block body
+    .text-white.text-center.mt-5
+        h2 Pesquisa por <span class="text-muted">#{search}</span>:
+
+        if (searchBots.length > 0)
+            .justify-content-center.align-items-center
+                .card-group.mt-3
+                    for bot in searchBots
+                        include ./cards/index
+        else
+            h4(style="margin-top: 13rem;") Infelizmente não encontramos nenhum bot com esta palavra chave

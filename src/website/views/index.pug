@@ -1,0 +1,21 @@
+extends ./layout/layout
+
+block head
+    title DarkLand - Os melhores bots!
+
+block body
+    .mt-5.text-white.text-center
+        h1 Destaques do mês
+        .card-group.justify-content-center.align-items-center
+            for bot in bots.top
+                include ./cards/index
+
+        h1.mt-5 Adicionados recentementes
+        .card-group.justify-content-center.align-items-center
+            for bot in bots.recent
+                include ./cards/index
+
+        h1.mt-5 Exploração
+        .card-group.justify-content-center.align-items-center
+            for bot in bots.explore
+                include ./cards/index

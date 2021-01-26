@@ -1,0 +1,31 @@
+extends ./layout/layout
+
+block head
+    title #{userSession.username} - Painel de Controle
+    meta(name="description" content="Painel de gerenciamento dos seus bots. Aqui você pode editar e adicionar bots.")
+
+block body
+    .text-center.text-white
+
+        - const availableBots = bots.filter(bot => !bot.pending)
+        - const pendingBots = bots.filter(bot => bot.pending)
+
+        if (availableBots.length > 0)
+            h1.mt-5 Meus bots
+            a.btn.btn-outline-light.mt-3(href="/dashboard/add") Adicionar
+            .card-group.justify-content-center.md-3.mt-3.cols
+                each bot in availableBots
+                    include ./dashboard/cards/bot-available-client
+        else
+            div(style="margin-top: 150px;")
+                h1 Você não tem nenhum bot
+                h4 Vamos mudar isto ?
+                a.btn.btn-outline-light.mt-3(href="/dashboard/add") Adicionar
+
+
+        if (pendingBots.length > 0)
+            h1.mt-5 Bots pendentes <span class="text-muted">(#{pendingBots.length})</span>
+            .card-group.justify-content-center.md-3
+                for bot in pendingBots
+                    include ./dashboard/cards/bot-pending-client
+

@@ -1,0 +1,12 @@
+.mx-auto
+    .card.text-center.bg-dark(style="width: 15rem; margin: 20px 0;")
+        .card-header
+            small.card-text #{bot.view.tags[0].toUpperCase()}
+            small &nbsp;  |  &nbsp;
+            small #{bot.view.votes.current} #{bot.view.votes.current > 1 ? "VOTOS" : "VOTO"}
+
+        img.card-img-top.rounded-circle.mx-auto.mt-3(src=`https://cdn.discordapp.com/avatars/${bot._id}/${bot.avatar}.png?size=2048` onerror="redefineImage(this)" alt="guild-image" style="width: 120px;")
+        .card-body
+            h5.card-title #{bot.username}
+            p.card-text(style="color: gray;") #{bot.view.shortDescription}
+        a.btn.btn-outline-info(href=`/bot/${bot.view.customLink || bot.id}`) Visitar

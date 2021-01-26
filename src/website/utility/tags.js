@@ -1,0 +1,16 @@
+module.exports = [
+    "Anime",
+    "Dashboard",
+    "Diversão",
+    "Utilidade",
+    "Música",
+    "Moderação",
+    "Economia",
+    "Meme",
+    "Social",
+    "RPG",
+    "League of Legends",
+    "CSGO",
+    "Fortnite",
+    "Minecraft",
+]

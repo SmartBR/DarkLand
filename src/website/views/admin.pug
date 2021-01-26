@@ -1,0 +1,19 @@
+extends ./layout/layout
+
+block head
+    title #{userSession.username} - Administração
+    meta(name="description" content="Painel do Administrador. Aqui é onde as avaliações dos bots serão feitas. (Página Privada)")
+
+block body
+    .text-center.text-white.mt-5
+        h1 #{userSession.username}, bem-vindo de volta!
+        img.mt-3.rounded-circle(src=`https://cdn.discordapp.com/avatars/${userSession.id}/${userSession.avatar}?size=2048` height="400px;" alt="user-img")
+
+        if (botPendings.length > 0)
+            div(style="margin-top: 150px;")
+                h1 Bots para avaliação <span class="text-muted">(#{botPendings.length})</span>
+                .card-group.justify-content-center.md-3.mt-3.cols
+                    for bot in botPendings
+                        include ./dashboard/cards/bot-pending-admin
+        else
+            h3.mt-3.mb-5.red-text Parece que não tem nenhum bot para avaliação =C

@@ -1,0 +1,56 @@
+extends ../layout/layout
+
+block head
+    title #{bot.username} - Estação de Edição
+    script(src="/jquery/botconfig.js")
+    script(src="/jquery/botdelete.js")
+
+block body
+    .text-center.text-white.mt-5
+        h1 Gerenciamento
+        p Você está na estação de edição do seu bot.
+
+        form#noPostForm.container.mt-5.text-lg-left
+            .row
+                .form-outline.mb-3.col
+                    span ID do bot
+                    input.form-control.disabled(data-error="Você precisa preencher esta informação" name="id" type="text" value=bot.id style="max-width: 29rem;" required)
+                .form-outline.mb-3.col
+                    span Prefix
+                    input.form-control(name="prefix" type="text" value=bot.view.prefix style="max-width: 29rem;" required)
+            .row
+                .form-outline.mb-3.col
+                    span Link personalizado (apenas para vips)
+                    div(style="display: flex; max-width: 29rem;")
+                        input.form-control.disabled(type="text" value=`darkland.site/bot/` style="width: 9.7rem;")
+                        input.form-control(name="customLink" type="text" disabled=!vip maxlength="15" value=`${bot.view.customLink || ""}`)
+                .form-outline.mb-3.col
+                    span Livraria
+                    select.form-control(name="library" style="max-width: 29rem;")
+                        each library in libraries
+                            option(selected=bot.view.library === library) #{library}
+            .row
+                .form-outline.mb-3.col
+                    span Servidor de suporte
+                    input.form-control(name="supportServer" type="text" value=bot.view.supportServer style="max-width: 29rem;")
+                .form-outline.mb-3.col
+                    span Site/Painel
+                    input.form-control(name="website" type="text" value=bot.view.website style="max-width: 29rem;")
+            .row
+                .form-outline.mb-3.col
+                    span Descrição (curta)
+                    textarea.form-control(name="shortDescription" maxlength="30" style="max-width: 29rem;" rows="4" required) #{bot.view.shortDescription}
+                .form-outline.mb-3.col
+                    span Descrição (detalhada)
+                    textarea.form-control(name="description" maxlength="7000" style="max-width: 29rem;" rows="4" required) #{bot.view.description}
+                    small Markdown permitido.
+            .row
+                .form-outline.mb-3.col
+                    span Tags (limite 3)
+                    select.form-control(name="tags" style="max-width: 29rem;" required multiple)
+                        each tag in tags
+                            option(selected=bot.view.tags.includes(tag)) #{tag}
+                    small Pressione CTRL para selecionar mais de um
+
+            button#sendButton.btn.btn-success(aria-label="Bot editado com sucesso!") Salvar
+            button#deleteButton.btn.btn-danger(aria-label="Bot deletado com sucesso!") Deletar

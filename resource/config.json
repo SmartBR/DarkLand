@@ -1,0 +1,44 @@
+{
+  "prefix": "++",
+  "token": "your_bot_token",
+  "mongo_uri": "your_mongodb_uri",
+  "support_server": "your_guild_ud",
+
+  "client": {
+    "id": "your_client_id",
+    "secret":  "your_client_secret"
+  },
+
+  "roles": {
+    "member": "XXXXXXXXXXXXXXXXXX",
+    "evaluator": "XXXXXXXXXXXXXXXXXX",
+    "vip": "XXXXXXXXXXXXXXXXXX",
+    "bot": "XXXXXXXXXXXXXXXXXX",
+    "votes_api": "XXXXXXXXXXXXXXXXXX"
+  },
+
+  "categories": {
+    "test_bot": "XXXXXXXXXXXXXXXXXX"
+  },
+
+  "channels": {
+    "join": "XXXXXXXXXXXXXXXXXX",
+    "bot_list_log":  "XXXXXXXXXXXXXXXXXX",
+    "votes_log": "XXXXXXXXXXXXXXXXXX",
+    "users_log": "XXXXXXXXXXXXXXXXXX",
+    "votes_api": "XXXXXXXXXXXXXXXXXX"
+  },
+
+  "website": {
+    "domain": "https://localhost",
+    "port": 80,
+
+    "voteBot": {
+      "time": "7",
+      "limit": {
+        "normal": 5,
+        "vip": 10
+      }
+    }
+  }
+}

@@ -1,0 +1,85 @@
+extends ../layout/layout
+
+block head
+    title #{bot.username} - Verificação
+    script(src="/jquery/verify.js")
+
+block body
+    .text-center.text-white.mt-5
+        h1 Verificação de #{bot.username}
+
+        .mt-5
+            img.card-imt-top.rounded-circle.mx-auto(src=`https://cdn.discordapp.com/avatars/${bot.id}/${bot.avatar}?size=2048` style="height: 15rem;" alt="bot-img")
+            br
+
+            .mt-3
+                button.btn.btn-outline-success(data-toggle="modal" data-target="#approveModal") Aprovar
+                #approveModal.modal.fade.black-text(tabindex="-1" role="dialog" aria-labelledby="approveModalLabel" aria-hidden="true")
+                    .modal-dialog.modal-lg(role="document")
+                        .modal-content
+                            .modal-body.text-center
+                                h3#approveModalLabel Aprovação de #{bot.username}##{bot.discriminator}
+                                h6.mt-2 Você deseja confirmar esta ação ?
+
+                            .modal-footer.justify-content-center
+                                button#approveButton.btn.btn-success Confirmar
+                                button.btn.btn-danger(data-dismiss="modal") Fechar
+
+                button.btn.btn-outline-danger(data-toggle="modal" data-target="#reproveModal") Reprovar
+                #reproveModal.modal.fade.black-text(tabindex="-1" role="dialog" aria-labelledby="reproveModalLabel" aria-hidden="true")
+                    .modal-dialog.modal-lg(role="document")
+                        .modal-content
+                            form#noPostForm(method="POST")
+                                .modal-body.text-center
+                                    h3#reproveModalLabel Reprovação de #{bot.username}##{bot.discriminator}
+                                    h6.mt-2 Selecione um motivo
+                                    select.custom-select(name="reason" required)
+                                        each reason in reprovereasons
+                                            option #{reason}
+
+                                .modal-footer.justify-content-center
+                                    button#reproveButton.btn.btn-success Confirmar
+                                    button.btn.btn-danger(data-dismiss="modal") Fechar
+
+
+                a.btn.btn-outline-info(href=`https://discord.com/api/oauth2/authorize?client_id=${bot.id}&permissions=8&scope=bot` target="_blank") Adicionar
+
+                .d-flex.mx-auto.card.bg-dark.rounded-border(style="width: 70rem; margin: 20px 0;")
+                    .card-body
+                        h5.card-title #{bot.username}##{bot.discriminator}
+
+                        p.mt-3.
+                            Dono <br>
+                            <span class="text-muted">#{owner.username}##{owner.discriminator} (#{owner.id})</span>
+
+                        p.
+                            Prefix <br>
+                            <span class="text-muted">#{bot.view.prefix}</span>
+
+                        p.
+                            Livraria <br>
+                            <span class="text-muted">#{bot.view.library}</span>
+
+                        p.
+                            Votos <br>
+                            <span class="text-muted">#{bot.view.votes.current}</span>
+
+                        if (bot.view.website)
+                            p.
+                                Site / Painel <br>
+                                <span class="text-muted">#{bot.view.website}</span>
+
+                        p
+                            | Tags <br>
+                            each tag in bot.view.tags
+                                span.me-1.mb-1.badge.bg-info(style="padding: 8px;") #{tag.toUpperCase()}
+
+                        if (bot.view.customInvite)
+                            p.
+                                Convite personalizado <br>
+                                <span class="text-muted">#{domain}/bot/#{bot.view.customInvite}</span>
+
+                        p
+                            | Descrição (detalhado) <br>
+                            div.text-left(style="padding-left: 5rem;")
+                                | !{markdownHtml}

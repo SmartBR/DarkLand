@@ -1,0 +1,29 @@
+#methods {
+    margin: 45px 0;
+}
+
+code {
+    display: inline-block;
+    width: 45rem;
+    padding:7px;
+    background-color: #2b2626;
+    text-align: left;
+}
+
+.title {
+    margin: 25px 0;
+    font-size: 30px;
+}
+
+.information {
+    margin: 15px 0;
+    font-size: 20px;
+}
+
+.darkland-code {
+    font-size: 20px;
+    max-width: 35rem;
+    background-color: #8c8c8c;
+    text-align: left;
+    padding: 10px;
+}

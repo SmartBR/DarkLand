@@ -1,0 +1,8 @@
+.d-flex.mx-auto
+    .card.text-center.bg-dark(style="width: 18em; margin: 20px 0;")
+        img.card-img-top.rounded-circle.mx-auto.mt-3(src=`https://cdn.discordapp.com/avatars/${bot._id}/${bot.avatar}.png?size=2048` onerror="redefineImage(this)" alt="bot-img" style="width: 120px;")
+        .card-body
+            h5.card-title #{bot.username}
+            p.card-text(style="color: gray;") #{bot.view.shortDescription}
+            a.btn.btn-outline-info.btn-sm(href=`/bot/${bot.view.customLink || bot.id}`) Visitar
+            a.btn.btn-outline-success.btn-sm(href=`/dashboard/edit/${bot.view.customLink || bot.id}`) Configurar

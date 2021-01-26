@@ -1,0 +1,54 @@
+extends ../layout/layout
+
+block head
+    title DarkLand - #{bot.username}
+    script(src="/jquery/botvote.js")
+    link(rel="stylesheet" href="/css/botpage.css")
+    meta(name="description" content=bot.view.shortDescription)
+
+    - img = (bot.avatar) ? `https://cdn.discordapp.com/avatars/${bot._id}/${bot.avatar}.png?size=2048` : "/img/discord-bot.png"
+
+    meta(property="og:image" content=img)
+    link(rel="icon" href=img type="image/png" sizes="128x128")
+
+block body
+    .text-white.text-center
+        - img = (bot.avatar) ? `https://cdn.discordapp.com/avatars/${bot._id}/${bot.avatar}.png?size=2048` : "/img/discord-bot.png"
+        img.card-imt-top.rounded-circle.mx-auto(src=img style="height: 15rem;" alt="bot-img")
+        h2.mt-2
+            span.badge.badge-sm.orange #{bot.view.library}
+            | &nbsp;#{bot.username}
+            span.text-muted ##{bot.discriminator} &nbsp;&nbsp;
+
+            if (owner.admin || owner.vip)
+                small.badge.badge-success.me-3 VIP
+            a(data-mdb-toggle="tooltip" title=`${owner.username}#${owner.discriminator} (Dono)`)
+                img.rounded-circle.mx-auto(src=`https://cdn.discordapp.com/avatars/${owner.id}/${owner.avatar}?size=2048` style="height: 32px;" alt="owner-img")
+                span.ms-1(style="font-size: 16px;" ) #{owner.username}
+
+        p.mt-3 #{bot.view.shortDescription}
+
+        #tags
+            each tag in bot.view.tags
+                span.badge.badge-danger #{tag}
+
+        #mainInformation.container.mt-3.mb-3.justify-content-center
+            strong.text-uppercase VOTOS: &nbsp;
+            span#votesCount.me-5 #{bot.view.votes.current}
+
+            strong.text-uppercase PREFIX: &nbsp;
+            span.me-5 #{bot.view.prefix}
+
+            strong.text-uppercase GUILDS: &nbsp;
+            span --/--
+
+
+        div#actions
+            if (bot.view.website)
+                a.btn.btn-outline-info(href=bot.view.website target="_blank") Site
+            a.btn.btn-outline-info(href=`https://discord.com/api/oauth2/authorize?client_id=${bot.id}&permissions=8&scope=bot` target="_blank") Adicionar
+            a.btn.btn-outline-info(href=bot.view.supportServer target="_blank") Servidor de Suporte
+            button#voteButton.btn.btn-outline-info Votar
+
+        #markdown.text-left.mx-auto.
+            !{markdownHtml}
