@@ -6,6 +6,12 @@ Discord Bot List
 ```git
 git clone https://github.com/SmartBR/ZuraaaNatal.git
 ```
+
+- Agora você precisa baixar as dependências
+```bash
+npm install
+```
+
 - Acesse o [Discord Developer Portal](https://discord.com/developers/applications/) e crie uma aplicação.
 - Depois de criar a aplicação, clique em OAuth2 e adicione a url ``https://yourdomain/callback``.
 - Um pouco abaixo em "OAuth2 Url Generator", selecione o domínio criado acima.
