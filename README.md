@@ -11,6 +11,6 @@ git clone https://github.com/SmartBR/ZuraaaNatal.git
 - Um pouco abaixo em "OAuth2 Url Generator", selecione o domínio criado acima.
 - Pronto! Depois navegue até a seção "General Information", copie o Client ID & Client Secret e coloque em ``resource/config.json``.
 - Depois de tudo isso, basta iniciar sua aplicação com:
-  - ```git
+```git
   node .
-  ```
+```
